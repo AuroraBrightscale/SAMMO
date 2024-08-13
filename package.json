@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "npx tsc && node ./build/build.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}
