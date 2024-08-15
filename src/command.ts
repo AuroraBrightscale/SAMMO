@@ -1,3 +1,5 @@
+
+
 /**
  * Enum that denotes the type of a command's input.
  */
@@ -23,34 +25,51 @@ enum InputType {
      */
     SelectBox = 18,
 }
-declare const COMMAND_START_GAME: string;
-SAMMI.extCommand(COMMAND_START_GAME, 3355443, 52, {
-    spaces: ['Bingo Spaces', InputType.WhiteTextbox, ""],
-    rowBinned: ['Row Binned?', InputType.Checkbox, 1],
-});
 
-declare const COMMAND_NEW_CARD: string;
-SAMMI.extCommand(COMMAND_NEW_CARD, 3355443, 52, {
-    username: ['Username', InputType.WhiteTextbox, ""],
-    prefillBoard: ['Prefill Board', InputType.Checkbox, 1],
-    boardCreated: ['Board Created', InputType.WhiteTextbox, ""],
-});
+const DEFAULT_COLOR = 3355443;
+const DEFAULT_HEIGHT = 52;
 
-declare const COMMAND_GET_CARD: string;
-SAMMI.extCommand(COMMAND_GET_CARD, 3355443, 52, {
-    username: ['Username', InputType.WhiteTextbox, ""],
-    cardVar: ['Card', InputType.WhiteTextbox, ""],
-});
+export enum Commands {
+    START_GAME = "SAMMO: Start Game",
+    START_BINNED = "SAMMO: Start Game (Binned)",
+    NEW_CARD = "SAMMO: New Card",
+    GET_CARD = "SAMMO: Get Card",
+    CALL_SPACE = "SAMMO: Call Space",
+    GET_BINGOS = "SAMMO: List Bingos",
+}
 
-declare const COMMAND_CALL_SPACE: string;
-SAMMI.extCommand(COMMAND_CALL_SPACE, 3355443, 52, {
-    space: ['Space', InputType.WhiteTextbox, ""],
-});
-
-declare const COMMAND_GET_BINGOS: string;
-SAMMI.extCommand(COMMAND_GET_BINGOS, 3355443, 52, {
-    username: ['Username', InputType.WhiteTextbox, "all"],
-    variable: ['Store in variable', InputType.WhiteTextbox, ""],
-})
-
-bingoMain();
+export function setupCommands() {
+    SAMMI.extCommand(Commands.START_GAME, DEFAULT_COLOR, DEFAULT_HEIGHT, {
+        spaces: ['Bingo Spaces', InputType.YellowTextbox, ""],
+        columnNames: ['Column Names', InputType.WhiteTextbox, "BINGO"],
+    });
+    
+    SAMMI.extCommand(Commands.START_BINNED, DEFAULT_COLOR, DEFAULT_HEIGHT, {
+        bin1: ['Bin 1', InputType.WhiteTextbox, ""],
+        bin2: ['Bin 2', InputType.WhiteTextbox, ""],
+        bin3: ['Bin 3', InputType.WhiteTextbox, ""],
+        bin4: ['Bin 4', InputType.WhiteTextbox, ""],
+        bin5: ['Bin 5', InputType.WhiteTextbox, ""],
+        columnNames: ['Column Names', InputType.WhiteTextbox, "BINGO"],
+    });
+    
+    SAMMI.extCommand(Commands.NEW_CARD, DEFAULT_COLOR, DEFAULT_HEIGHT, {
+        username: ['Username', InputType.WhiteTextbox, ""],
+        prefillBoard: ['Prefill Board', InputType.Checkbox, 1],
+        boardCreated: ['Board Created', InputType.WhiteTextbox, ""],
+    });
+    
+    SAMMI.extCommand(Commands.GET_CARD, DEFAULT_COLOR, DEFAULT_HEIGHT, {
+        username: ['Username', InputType.WhiteTextbox, ""],
+        cardVar: ['Card', InputType.WhiteTextbox, ""],
+    });
+    
+    SAMMI.extCommand(Commands.CALL_SPACE, DEFAULT_COLOR, DEFAULT_HEIGHT, {
+        space: ['Space', InputType.WhiteTextbox, ""],
+    });
+    
+    SAMMI.extCommand(Commands.GET_BINGOS, DEFAULT_COLOR, DEFAULT_HEIGHT, {
+        username: ['Username', InputType.WhiteTextbox, "all"],
+        variable: ['Store in variable', InputType.WhiteTextbox, ""],
+    });
+}

@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import os from "node:os";
 
-const INSERT_SCRIPT = "js/script.js";
+const INSERT_SCRIPT = "dist/bundle.js";
 const INSERT_COMMAND = "js/command.js";
 const INSERT_EXTERNAL = "html/tab.html";
 const EXTENSION_JSON = "extension.json";
@@ -17,9 +17,9 @@ const sef = {
     extension_version: extensionJson.version,
     extension_info: extensionJson.info,
     insert_external: fs.readFileSync(INSERT_EXTERNAL),
-    insert_command: fs.readFileSync(INSERT_COMMAND),
+    insert_command: fs.readFileSync(INSERT_SCRIPT),
     insert_hook: "",
-    insert_script: fs.readFileSync(INSERT_SCRIPT),
+    insert_script: "",
     insert_over: ""
 };
 
