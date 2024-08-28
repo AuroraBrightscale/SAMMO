@@ -72,7 +72,7 @@ declare namespace SAMMI {
      * - (optional) [] selectOptions = array of options for the user to select (when using Select box type)
      * @param {[boxName: string, boxType: number, defaultValue: (string | number), sizeModifier: (number|undefined), selectOptions: Array|undefined]} boxes.boxVariable
      * */
-    function extCommand(name: string, color: number, height: number, boxes: CommandBoxes, triggerButton = false, hidden = false);
+    function extCommand(name: string, color: number | string, height: number, boxes: CommandBoxes, triggerButton = false, hidden = false);
 
     /**
      * Sends an extension trigger

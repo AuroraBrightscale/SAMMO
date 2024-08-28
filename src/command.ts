@@ -36,6 +36,7 @@ export enum Commands {
     GET_CARD = "SAMMO: Get Card",
     CALL_SPACE = "SAMMO: Call Space",
     GET_BINGOS = "SAMMO: List Bingos",
+    GET_CARD_IMAGE = "SAMMO: Get Card Image",
 }
 
 export function setupCommands() {
@@ -62,6 +63,11 @@ export function setupCommands() {
     SAMMI.extCommand(Commands.GET_CARD, DEFAULT_COLOR, DEFAULT_HEIGHT, {
         username: ['Username', InputType.WhiteTextbox, ""],
         cardVar: ['Card', InputType.WhiteTextbox, ""],
+    });
+
+    SAMMI.extCommand(Commands.GET_CARD_IMAGE, '#420766', DEFAULT_HEIGHT, {
+        username: ['Username', InputType.WhiteTextbox, ""],
+        cardImageVar: ['Card Image', InputType.WhiteTextbox, ""],
     });
     
     SAMMI.extCommand(Commands.CALL_SPACE, DEFAULT_COLOR, DEFAULT_HEIGHT, {

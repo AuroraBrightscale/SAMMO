@@ -1,10 +1,23 @@
+import { CardRenderer } from "./cardRenderer";
 import { Commands, setupCommands } from "./command";
-import { BingoGame, Bins, Space } from "./gameLogic";
+import { BingoGame, Bins } from "./gameLogic";
 import { range } from "./util";
+import html2canvas from "html2canvas";
+
+
+const cardRenderer = new CardRenderer($, html2canvas);
+const TRIGGER_BINGO_WON = "Bingo.Won";
+let currentGame: BingoGame | undefined;
 
 setupCommands();
 
-const TRIGGER_BINGO_WON = "Bingo.Won";
+function getCurrentGame(): BingoGame {
+    if (!currentGame) {
+        SAMMI.alert("Bingo error: No game in progress");
+        throw new Error("No game in progress");
+    }
+    return currentGame;
+}
 
 sammiclient.on(Commands.START_GAME, payload => {
     //TODO test this
@@ -22,8 +35,16 @@ sammiclient.on(Commands.NEW_CARD, payload => {
 });
 
 sammiclient.on(Commands.GET_CARD, payload => {
-    const card = getCard(payload.Data.username);
-    SAMMI.setVariable(payload.Data.cardVar, card, payload.Data.FromButton);
+    const card = getCurrentGame().getCard(payload.Data.username);
+    SAMMI.setVariable(payload.Data.cardVar, card?.spaces, payload.Data.FromButton);
+});
+
+sammiclient.on(Commands.GET_CARD_IMAGE, async payload => {
+    const card = getCurrentGame().getCard(payload.Data.username);
+    if (card) {
+        const cardData = await cardRenderer.render(card);
+        SAMMI.setVariable(payload.Data.cardImageVar, cardData, payload.Data.FromButton);
+    }
 });
 
 sammiclient.on(Commands.CALL_SPACE, payload => {
@@ -49,14 +70,7 @@ sammiclient.on(Commands.GET_BINGOS, payload => {
     }
 });
 
-let currentGame: BingoGame | undefined;
-function getCurrentGame(): BingoGame {
-    if (!currentGame) {
-        SAMMI.alert("Bingo error: No game in progress");
-        throw new Error("No game in progress");
-    }
-    return currentGame;
-}
+
 
 function newCard(username: string, prefillBoard: boolean): boolean {
     const game = getCurrentGame();
@@ -89,8 +103,4 @@ async function startGame(payload: Payload, binned: boolean) {
         }
     }
     currentGame = new BingoGame(bins);
-}
-
-function getCard(username: string): Space[][] | undefined {
-    return getCurrentGame().getCard(username)?.spaces;
 }
