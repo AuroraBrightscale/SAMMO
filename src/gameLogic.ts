@@ -97,8 +97,9 @@ export class BingoGame {
             for (let i = 0; i < 25; i++) {
                 if (i === FREE_SPACE_POSITION) {
                     newCard.spaces[Math.floor(i / 5)][i % 5] = new Space(FREE_SPACE, true);
+                } else {
+                    newCard.spaces[Math.floor(i / 5)][i % 5] = new Space(spaces[i]);
                 }
-                newCard.spaces[Math.floor(i / 5)][i % 5] = new Space(spaces[i]);
             }
         } else {
             //Shuffle by bins
@@ -144,6 +145,7 @@ export class BingoGame {
     }
 
     callSpace(space: string): Bingo[] {
+        this.called.add(space);
         return [...this.cards.values()].map(card => card.call([space])).filter(bingo => !!bingo);
     }
 }

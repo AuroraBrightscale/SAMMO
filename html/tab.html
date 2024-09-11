@@ -1,69 +1,182 @@
 <style>
-    .bingo-card {
-        height: 600px;
-        width: 600px;
-        text-align: center;
-        font-size: 2em;
-        background-color: black;
+    .clear-styles {
+        all: unset;
     }
+
+    /* .clear-styles :first-child {
+        all: unset;
+    }
+
+    .clear-styles :first-of-type {
+        all: unset;
+    } */
+
+    .bingo-card {
+        width: 1200px;
+        text-align: center;
+        font-size: 3.2em;
+        background-color: black;
+        font-family: Lato, sans-serif;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .name-insert {
+        width: fit-content;
+        border-radius: 40px;
+        display: flex;
+        padding: 10px;
+        font-size: 2rem;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+        margin: 10px auto;
+    }
+
+    .name-insert img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+    .name-insert span {
+        margin: 0 1rem;
+    }
+
+    .bingo-card-header {
+    }
+
+    .bingo-card table {
+        flex-grow: 1;
+    }
+
+    .bingo-card td:first-of-type {
+        font-family: unset;
+        font-weight: unset;
+        padding-left: unset;
+    }
+
     .bingo-card td {
         border: 2px white;
         border-style: solid;
-        width: 20%;
-        height: 16.7%;
+        width: 200px;
+        height: 240px;
     }
+
     .bingo-card th {
-        height: 16.7%;
+        font-size: 2em;
+        height: 200px;
+        width: 200px;
     }
+
     .bingo-card .marked {
         background: #171791;
     }
 </style>
-<table class="bingo-card">
-    <thead>
-        <tr>
-            <th class="header-0"></th>
-            <th class="header-1"></th>
-            <th class="header-2"></th>
-            <th class="header-3"></th>
-            <th class="header-4"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><div class="space-0-0"></div></td>
-            <td><div class="space-0-1"></div></td>
-            <td><div class="space-0-2"></div></td>
-            <td><div class="space-0-3"></div></td>
-            <td><div class="space-0-4"></div></td>
-        </tr>
-        <tr>
-            <td><div class="space-1-0"></div></td>
-            <td><div class="space-1-1"></div></td>
-            <td><div class="space-1-2"></div></td>
-            <td><div class="space-1-3"></div></td>
-            <td><div class="space-1-4"></div></td>
-        </tr>
-        <tr>
-            <td><div class="space-2-0"></div></td>
-            <td><div class="space-2-1"></div></td>
-            <td><div class="space-2-2"></div></td>
-            <td><div class="space-2-3"></div></td>
-            <td><div class="space-2-4"></div></td>
-        </tr>
-        <tr>
-            <td><div class="space-3-0"></div></td>
-            <td><div class="space-3-1"></div></td>
-            <td><div class="space-3-2"></div></td>
-            <td><div class="space-3-3"></div></td>
-            <td><div class="space-3-4"></div></td>
-        </tr>
-        <tr>
-            <td><div class="space-4-0"></div></td>
-            <td><div class="space-4-1"></div></td>
-            <td><div class="space-4-2"></div></td>
-            <td><div class="space-4-3"></div></td>
-            <td><div class="space-4-4"></div></td>
-        </tr>
-    </tbody>
-</table>
+<div class="clear-styles">
+    <div class="bingo-card">
+        <div class="bingo-card-header">
+            <div class="name-insert">
+                <img />
+                <span></span>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="header-0"></th>
+                    <th class="header-1"></th>
+                    <th class="header-2"></th>
+                    <th class="header-3"></th>
+                    <th class="header-4"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="space-0-0"></div>
+                    </td>
+                    <td>
+                        <div class="space-0-1"></div>
+                    </td>
+                    <td>
+                        <div class="space-0-2"></div>
+                    </td>
+                    <td>
+                        <div class="space-0-3"></div>
+                    </td>
+                    <td>
+                        <div class="space-0-4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="space-1-0"></div>
+                    </td>
+                    <td>
+                        <div class="space-1-1"></div>
+                    </td>
+                    <td>
+                        <div class="space-1-2"></div>
+                    </td>
+                    <td>
+                        <div class="space-1-3"></div>
+                    </td>
+                    <td>
+                        <div class="space-1-4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="space-2-0"></div>
+                    </td>
+                    <td>
+                        <div class="space-2-1"></div>
+                    </td>
+                    <td>
+                        <div class="space-2-2"></div>
+                    </td>
+                    <td>
+                        <div class="space-2-3"></div>
+                    </td>
+                    <td>
+                        <div class="space-2-4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="space-3-0"></div>
+                    </td>
+                    <td>
+                        <div class="space-3-1"></div>
+                    </td>
+                    <td>
+                        <div class="space-3-2"></div>
+                    </td>
+                    <td>
+                        <div class="space-3-3"></div>
+                    </td>
+                    <td>
+                        <div class="space-3-4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="space-4-0"></div>
+                    </td>
+                    <td>
+                        <div class="space-4-1"></div>
+                    </td>
+                    <td>
+                        <div class="space-4-2"></div>
+                    </td>
+                    <td>
+                        <div class="space-4-3"></div>
+                    </td>
+                    <td>
+                        <div class="space-4-4"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

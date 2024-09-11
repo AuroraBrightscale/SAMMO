@@ -28,6 +28,7 @@ enum InputType {
 
 const DEFAULT_COLOR = 3355443;
 const DEFAULT_HEIGHT = 52;
+const ASYNC_COMMAND_COLOR = '#442a44';
 
 export enum Commands {
     START_GAME = "SAMMO: Start Game",
@@ -41,7 +42,7 @@ export enum Commands {
 
 export function setupCommands() {
     SAMMI.extCommand(Commands.START_GAME, DEFAULT_COLOR, DEFAULT_HEIGHT, {
-        spaces: ['Bingo Spaces', InputType.YellowTextbox, ""],
+        spaces: ['Bingo Spaces', InputType.WhiteTextbox, ""],
         columnNames: ['Column Names', InputType.WhiteTextbox, "BINGO"],
     });
     
@@ -65,8 +66,11 @@ export function setupCommands() {
         cardVar: ['Card', InputType.WhiteTextbox, ""],
     });
 
-    SAMMI.extCommand(Commands.GET_CARD_IMAGE, '#420766', DEFAULT_HEIGHT, {
+    SAMMI.extCommand(Commands.GET_CARD_IMAGE, ASYNC_COMMAND_COLOR, DEFAULT_HEIGHT, {
         username: ['Username', InputType.WhiteTextbox, ""],
+        displayName: ['Twitch Display Name', InputType.WhiteTextbox, ""],
+        pictureUrl: ['Picture URL', InputType.WhiteTextbox, ""],
+        color: ['Color', InputType.WhiteTextbox, ""],
         cardImageVar: ['Card Image', InputType.WhiteTextbox, ""],
     });
     

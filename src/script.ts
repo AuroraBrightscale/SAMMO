@@ -1,12 +1,12 @@
+import html2canvas from "html2canvas";
 import { CardRenderer } from "./cardRenderer";
 import { Commands, setupCommands } from "./command";
 import { BingoGame, Bins } from "./gameLogic";
 import { range } from "./util";
-import html2canvas from "html2canvas";
 
 
 const cardRenderer = new CardRenderer($, html2canvas);
-const TRIGGER_BINGO_WON = "Bingo.Won";
+const TRIGGER_BINGO_WON = "SAMMO.Won";
 let currentGame: BingoGame | undefined;
 
 setupCommands();
@@ -20,7 +20,6 @@ function getCurrentGame(): BingoGame {
 }
 
 sammiclient.on(Commands.START_GAME, payload => {
-    //TODO test this
     startGame(payload, false);
 });
 
@@ -42,7 +41,12 @@ sammiclient.on(Commands.GET_CARD, payload => {
 sammiclient.on(Commands.GET_CARD_IMAGE, async payload => {
     const card = getCurrentGame().getCard(payload.Data.username);
     if (card) {
-        const cardData = await cardRenderer.render(card);
+        const cardData = await cardRenderer.render(
+            card,
+            payload.Data.displayName,
+            payload.Data.pictureUrl,
+            payload.Data.color,
+        );
         SAMMI.setVariable(payload.Data.cardImageVar, cardData, payload.Data.FromButton);
     }
 });
@@ -94,7 +98,7 @@ async function startGame(payload: Payload, binned: boolean) {
             throw new Error("SAMMO: Cannot create game: Invalid bin data");
         }
     } else {
-        const spaces = (await SAMMI.getVariable(payload.Data.space, payload.Data.button)).value;
+        const spaces = (await SAMMI.getVariable(payload.Data.spaces, payload.Data.FromButton)).value;
         if (spaces instanceof Array) {
             bins = [["", spaces]];
         } else {
